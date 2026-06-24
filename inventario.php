@@ -60,16 +60,18 @@ text-decoration: none; border-radius: 5px;">+ Nuevo Producto</a>
 </div>
 
 <table>
-<thead>
-<tr>
-<th>Código</th>
-<th>Nombre del Producto</th>
-<th>Categoría</th>
-<th>Stock</th>
-<th>Precio Unitario</th>
-</tr>
+    <thead>
+        <tr>
+        <th>Código</th>
+        <th>Nombre del Producto</th>
+        <th>Categoría</th>
+        <th>Stock</th>
+        <th>Precio Unitario</th>
+        <th>Acciones</th> <!-- ¡NUEVA COLUMNA! -->
+    </tr>
 </thead>
-<tbody>
+
+    <tbody>
 <?php
 // 5. Ciclo WHILE para imprimir las filas dinámicamente
 // Si hay resultados en la base de datos, iteramos fila por fila
@@ -80,13 +82,21 @@ while($fila = $resultado->fetch_assoc()) {
 $claseStock = ($fila['stock'] < 10) ? 'stock-bajo' : '';
 ?>
 <!-- HTML que se repite por cada producto -->
-<tr>
-<td> <?php echo $fila['id']; ?> </td>
-<td> <?php echo $fila['nombre_producto']; ?> </td>
-<td> <?php echo $fila['nombre_categoria']; ?> </td>
-<td class="<?php echo $claseStock; ?>"> <?php echo $fila['stock']; ?> unds. </td>
-<td> $<?php echo number_format($fila['precio'], 2); ?> </td>
-</tr>
+    <tr>
+        <td> <?php echo $fila['id']; ?> </td>
+        <td> <?php echo $fila['nombre_producto']; ?> </td>
+        <td> <?php echo $fila['nombre_categoria']; ?> </td>
+        <td class="<?php echo $claseStock; ?>"> <?php echo $fila['stock']; ?> unds. </td>
+        <td> $<?php echo number_format($fila['precio'], 2); ?> </td>
+        <td>
+            <a href="eliminar_producto.php?id=<?php echo $fila['id']; ?>"
+                class="btn-eliminar"
+                onclick="return confirm('¿Estás absolutamente seguro de eliminar el producto: <?php
+                echo $fila['nombre_producto']; ?>?');">
+            🗑️ Eliminar
+            </a>
+        </td>
+    </tr>
 <?php
 } // Fin del bucle while
 } else {
