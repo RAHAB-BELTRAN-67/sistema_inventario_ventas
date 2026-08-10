@@ -77,3 +77,5 @@ SELECT c.nombre_categoria, SUM(p.stock) AS existencias_totales
 FROM productos p
 INNER JOIN categorias c ON p.categoria_id = c.id
 GROUP BY c.nombre_categoria;
+
+(CREATE TABLE e INSERT)
