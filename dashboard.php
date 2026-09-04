@@ -215,6 +215,10 @@ $precio_maximo = $fila_caro['max_precio'] ? $fila_caro['max_precio'] : 0;
             🚚 Módulo de Proveedores
         </a>
 
+        <a href="historial_compras.php" class="modulo">
+            Historial de Compras
+        </a>
+
 
         <!-- NUEVO MÓDULO: INGRESO DE MERCADERÍA -->
         <a href="nueva_compra.php" class="modulo" style="background:#10b981;">
